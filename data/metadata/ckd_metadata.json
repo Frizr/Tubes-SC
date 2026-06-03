@@ -1,0 +1,39 @@
+{
+  "dataset": "Chronic Kidney Disease",
+  "source": "uci",
+  "uci_id": 336,
+  "citation": "Rubini, L., Soundarapandian, P., & Eswaran, P. (2015). Chronic Kidney Disease [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5G020",
+  "feature_count": 24,
+  "features": [
+    "age",
+    "blood_pressure",
+    "specific_gravity",
+    "albumin",
+    "sugar",
+    "red_blood_cells",
+    "pus_cell",
+    "pus_cell_clumps",
+    "bacteria",
+    "blood_glucose_random",
+    "blood_urea",
+    "serum_creatinine",
+    "sodium",
+    "potassium",
+    "hemoglobin",
+    "packed_cell_volume",
+    "white_blood_cell_count",
+    "red_blood_cell_count",
+    "hypertension",
+    "diabetes_mellitus",
+    "coronary_artery_disease",
+    "appetite",
+    "pedal_edema",
+    "anemia"
+  ],
+  "target": "classification",
+  "target_labels": [
+    "ckd",
+    "notckd"
+  ],
+  "row_count": 400
+}

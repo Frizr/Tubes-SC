@@ -1,0 +1,301 @@
+{
+  "method": "permutation_importance",
+  "positive_label": "ckd",
+  "top_features": [
+    {
+      "feature": "specific_gravity",
+      "importance": 0.019436146812853737,
+      "std": 0.012265773785069172
+    },
+    {
+      "feature": "serum_creatinine",
+      "importance": 0.01564840081952227,
+      "std": 0.010869652176684235
+    },
+    {
+      "feature": "hemoglobin",
+      "importance": 0.008679057511690647,
+      "std": 0.008058074361741946
+    },
+    {
+      "feature": "hypertension",
+      "importance": 0.007727785913942631,
+      "std": 0.007203635672601716
+    },
+    {
+      "feature": "diabetes_mellitus",
+      "importance": 0.007727785913942631,
+      "std": 0.007203635672601716
+    },
+    {
+      "feature": "age",
+      "importance": 0.006794797126771524,
+      "std": 0.0044482388807569944
+    },
+    {
+      "feature": "albumin",
+      "importance": 0.006757100610118127,
+      "std": 0.007518665692092093
+    },
+    {
+      "feature": "potassium",
+      "importance": 0.00582411182294702,
+      "std": 0.004755367390376987
+    },
+    {
+      "feature": "blood_urea",
+      "importance": 0.0038827412152980132,
+      "std": 0.004755367390376987
+    },
+    {
+      "feature": "sodium",
+      "importance": 0.0038827412152980132,
+      "std": 0.004755367390376987
+    }
+  ],
+  "permutation_importance": [
+    {
+      "feature": "specific_gravity",
+      "importance": 0.019436146812853737,
+      "std": 0.012265773785069172
+    },
+    {
+      "feature": "serum_creatinine",
+      "importance": 0.01564840081952227,
+      "std": 0.010869652176684235
+    },
+    {
+      "feature": "hemoglobin",
+      "importance": 0.008679057511690647,
+      "std": 0.008058074361741946
+    },
+    {
+      "feature": "hypertension",
+      "importance": 0.007727785913942631,
+      "std": 0.007203635672601716
+    },
+    {
+      "feature": "diabetes_mellitus",
+      "importance": 0.007727785913942631,
+      "std": 0.007203635672601716
+    },
+    {
+      "feature": "age",
+      "importance": 0.006794797126771524,
+      "std": 0.0044482388807569944
+    },
+    {
+      "feature": "albumin",
+      "importance": 0.006757100610118127,
+      "std": 0.007518665692092093
+    },
+    {
+      "feature": "potassium",
+      "importance": 0.00582411182294702,
+      "std": 0.004755367390376987
+    },
+    {
+      "feature": "blood_urea",
+      "importance": 0.0038827412152980132,
+      "std": 0.004755367390376987
+    },
+    {
+      "feature": "sodium",
+      "importance": 0.0038827412152980132,
+      "std": 0.004755367390376987
+    },
+    {
+      "feature": "appetite",
+      "importance": 0.0038827412152980132,
+      "std": 0.004755367390376987
+    },
+    {
+      "feature": "blood_glucose_random",
+      "importance": 0.00291205591147351,
+      "std": 0.0044482388807569944
+    },
+    {
+      "feature": "packed_cell_volume",
+      "importance": 0.00291205591147351,
+      "std": 0.0044482388807569944
+    },
+    {
+      "feature": "pedal_edema",
+      "importance": 0.00291205591147351,
+      "std": 0.0044482388807569944
+    },
+    {
+      "feature": "pus_cell",
+      "importance": 0.0019413706076490066,
+      "std": 0.0038827412152980132
+    },
+    {
+      "feature": "red_blood_cell_count",
+      "importance": 0.0019025431954960315,
+      "std": 0.007326353031341374
+    },
+    {
+      "feature": "blood_pressure",
+      "importance": 0.0,
+      "std": 0.0
+    },
+    {
+      "feature": "sugar",
+      "importance": 0.0,
+      "std": 0.0
+    },
+    {
+      "feature": "red_blood_cells",
+      "importance": 0.0,
+      "std": 0.0
+    },
+    {
+      "feature": "pus_cell_clumps",
+      "importance": 0.0,
+      "std": 0.0
+    },
+    {
+      "feature": "bacteria",
+      "importance": 0.0,
+      "std": 0.0
+    },
+    {
+      "feature": "white_blood_cell_count",
+      "importance": 0.0,
+      "std": 0.0
+    },
+    {
+      "feature": "coronary_artery_disease",
+      "importance": 0.0,
+      "std": 0.0
+    },
+    {
+      "feature": "anemia",
+      "importance": 0.0,
+      "std": 0.0
+    }
+  ],
+  "model_feature_importance": [
+    {
+      "feature": "hemoglobin",
+      "importance": 0.19375330471968508
+    },
+    {
+      "feature": "serum_creatinine",
+      "importance": 0.13372039179823628
+    },
+    {
+      "feature": "packed_cell_volume",
+      "importance": 0.13295264292471212
+    },
+    {
+      "feature": "specific_gravity",
+      "importance": 0.11765608614493359
+    },
+    {
+      "feature": "red_blood_cell_count",
+      "importance": 0.07021454762516005
+    },
+    {
+      "feature": "albumin",
+      "importance": 0.06590873404336355
+    },
+    {
+      "feature": "hypertension_yes",
+      "importance": 0.04447300690265947
+    },
+    {
+      "feature": "blood_urea",
+      "importance": 0.041055651843032406
+    },
+    {
+      "feature": "hypertension_no",
+      "importance": 0.03993411410620286
+    },
+    {
+      "feature": "diabetes_mellitus_no",
+      "importance": 0.03558166869920735
+    },
+    {
+      "feature": "diabetes_mellitus_yes",
+      "importance": 0.02480599748821669
+    },
+    {
+      "feature": "blood_glucose_random",
+      "importance": 0.017331480127905873
+    },
+    {
+      "feature": "sodium",
+      "importance": 0.015311372588178196
+    },
+    {
+      "feature": "sugar",
+      "importance": 0.007491973925813189
+    },
+    {
+      "feature": "blood_pressure",
+      "importance": 0.007063589236981585
+    },
+    {
+      "feature": "pus_cell_normal",
+      "importance": 0.007019044491153619
+    },
+    {
+      "feature": "potassium",
+      "importance": 0.006423392320380403
+    },
+    {
+      "feature": "appetite_good",
+      "importance": 0.006403629661527557
+    },
+    {
+      "feature": "pedal_edema_yes",
+      "importance": 0.00572189640901492
+    },
+    {
+      "feature": "white_blood_cell_count",
+      "importance": 0.005155489785042348
+    },
+    {
+      "feature": "age",
+      "importance": 0.00468039142067148
+    },
+    {
+      "feature": "pedal_edema_no",
+      "importance": 0.004678717230287881
+    },
+    {
+      "feature": "appetite_poor",
+      "importance": 0.0044543246199367
+    },
+    {
+      "feature": "pus_cell_abnormal",
+      "importance": 0.0035562002817140343
+    },
+    {
+      "feature": "red_blood_cells_abnormal",
+      "importance": 0.001984818973476255
+    },
+    {
+      "feature": "red_blood_cells_normal",
+      "importance": 0.001298855028583884
+    },
+    {
+      "feature": "anemia_no",
+      "importance": 0.0006454855239374119
+    },
+    {
+      "feature": "anemia_yes",
+      "importance": 0.0004847729523916234
+    },
+    {
+      "feature": "bacteria_notpresent",
+      "importance": 0.00019861490749336806
+    },
+    {
+      "feature": "pus_cell_clumps_notpresent",
+      "importance": 3.980422010027821e-05
+    }
+  ],
+  "note": "Feature importance describes model behavior on evaluation data, not medical causality."
+}

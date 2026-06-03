@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Renal Evidence Studio</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">CKD risk screening demo</p>
+        <h1>Renal Evidence Studio</h1>
+        <p class="subtitle">Educational screening only; not a medical diagnosis.</p>
+      </div>
+      <div class="api-status" id="api-status">Checking API</div>
+    </header>
+
+    <main class="workspace">
+      <section class="input-panel" aria-labelledby="form-title">
+        <div class="panel-heading">
+          <div>
+            <h2 id="form-title">Screening Inputs</h2>
+            <p>24 UCI CKD attributes using semantic clinical values.</p>
+          </div>
+          <button class="secondary-button" type="button" id="example-button">Example Input</button>
+        </div>
+
+        <form id="screening-form">
+          <div class="sections" id="field-sections"></div>
+          <div class="action-bar">
+            <button class="primary-button" type="submit">Run Screening</button>
+            <button class="secondary-button" type="reset">Clear</button>
+          </div>
+        </form>
+      </section>
+
+      <aside class="result-panel" aria-live="polite">
+        <section class="result-block result-primary">
+          <span class="result-label">Prediction</span>
+          <strong id="prediction-value">Awaiting input</strong>
+          <span id="probability-value">Probability will appear after screening.</span>
+        </section>
+
+        <section class="result-block">
+          <h2>Top Model Signals</h2>
+          <ol class="feature-list" id="feature-list">
+            <li>No explanation available yet.</li>
+          </ol>
+        </section>
+
+        <section class="result-block">
+          <h2>Model Snapshot</h2>
+          <dl class="model-facts">
+            <div>
+              <dt>Model</dt>
+              <dd id="model-name">Loading</dd>
+            </div>
+            <div>
+              <dt>Features</dt>
+              <dd id="feature-count">Loading</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="result-block notice">
+          <h2>Safety Note</h2>
+          <p id="disclaimer">Educational screening only; not a medical diagnosis.</p>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      Dataset: Rubini, L., Soundarapandian, P., &amp; Eswaran, P. (2015).
+      Chronic Kidney Disease, UCI Machine Learning Repository.
+    </footer>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
