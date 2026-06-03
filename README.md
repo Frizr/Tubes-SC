@@ -1,5 +1,7 @@
 # Renal Evidence Studio
 
+**Topik: "Sistem Prediksi Risiko Penyakit Ginjal Kronis Menggunakan Perbandingan Algoritma Machine Learning Berbasis Web"**
+
 Renal Evidence Studio adalah sebuah demo edukasi untuk skrining Penyakit Ginjal Kronis (*Chronic Kidney Disease* / CKD). Proyek ini melatih beberapa model pengklasifikasi *scikit-learn* menggunakan dataset UCI CKD, memilih model terbaik berdasarkan skor F1 yang divalidasi silang (*cross-validated*), menyimpan *pipeline* tunggal yang mencakup pra-pemrosesan dan model, serta menyajikan prediksi melalui API FastAPI dan antarmuka web statis.
 
 Proyek ini terinspirasi dari ruang lingkup masalah skrining CKD dan bukan salinan dari repositori lain. Proyek ini secara sengaja menggunakan kontrak API, penamaan *field* bahasa Inggris yang semantik, alur kerja perbandingan model, struktur tata letak artefak, dan antarmuka satu halaman (*one-page interface*) yang berbeda.
