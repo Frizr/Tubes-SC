@@ -1,7 +1,7 @@
 {
   "project_name": "Renal Evidence Studio",
   "model_name": "random_forest",
-  "training_timestamp": "2026-06-03T14:31:56.550789+00:00",
+  "training_timestamp": "2026-06-03T14:47:53.695341+00:00",
   "feature_count": 24,
   "features": [
     "age",

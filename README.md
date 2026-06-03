@@ -1,32 +1,32 @@
 # Renal Evidence Studio
 
-Renal Evidence Studio is an educational Chronic Kidney Disease (CKD) screening demo. It trains several scikit-learn classifiers on the UCI CKD dataset, chooses the best model by cross-validated F1 score, stores a single preprocessing-plus-model pipeline, and serves predictions through a FastAPI API and static web interface.
+Renal Evidence Studio adalah sebuah demo edukasi untuk skrining Penyakit Ginjal Kronis (*Chronic Kidney Disease* / CKD). Proyek ini melatih beberapa model pengklasifikasi *scikit-learn* menggunakan dataset UCI CKD, memilih model terbaik berdasarkan skor F1 yang divalidasi silang (*cross-validated*), menyimpan *pipeline* tunggal yang mencakup pra-pemrosesan dan model, serta menyajikan prediksi melalui API FastAPI dan antarmuka web statis.
 
-This project is inspired by the CKD screening problem space, not copied from another repository. It intentionally uses a different API contract, English semantic field names, model-comparison workflow, artifact layout, and one-page interface.
+Proyek ini terinspirasi dari ruang lingkup masalah skrining CKD dan bukan salinan dari repositori lain. Proyek ini secara sengaja menggunakan kontrak API, penamaan *field* bahasa Inggris yang semantik, alur kerja perbandingan model, struktur tata letak artefak, dan antarmuka satu halaman (*one-page interface*) yang berbeda.
 
-## Architecture
+## Arsitektur
 
-- `scripts/fetch_data.py` fetches UCI CKD dataset id `336` through `ucimlrepo` and caches it to `data/raw/ckd.csv`. If the package or network is unavailable, it writes a deterministic offline fallback dataset so local tests can still run.
-- `src/train.py` compares Logistic Regression, Decision Tree, Random Forest, and SVC pipelines with stratified cross-validation.
-- `app/artifacts/pipeline.joblib` stores the selected scikit-learn `Pipeline`.
-- `app/artifacts/metrics.json`, `model_card.json`, and `feature_importance.json` store evaluation and explanation metadata.
-- `app/main.py` exposes FastAPI endpoints and serves `web/`.
+- `scripts/fetch_data.py` mengambil dataset UCI CKD id `336` melalui `ucimlrepo` dan menyimpannya ke `data/raw/ckd.csv`. Jika *library* atau jaringan tidak tersedia, skrip ini akan membuat dataset cadangan deterministik secara *offline* agar pengujian lokal tetap bisa berjalan.
+- `src/train.py` membandingkan beberapa *pipeline* model (*Logistic Regression*, *Decision Tree*, *Random Forest*, dan *SVC*) dengan validasi silang bertingkat (*stratified cross-validation*).
+- `app/artifacts/pipeline.joblib` menyimpan *scikit-learn* `Pipeline` yang terpilih.
+- `app/artifacts/metrics.json`, `model_card.json`, dan `feature_importance.json` menyimpan metrik evaluasi dan metadata penjelasan model.
+- `app/main.py` mengekspos *endpoint* FastAPI dan menyajikan tampilan web di folder `web/`.
 
 ## Dataset
 
 Rubini, L., Soundarapandian, P., & Eswaran, P. (2015). Chronic Kidney Disease [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5G020
 
-The public API uses 24 CKD attributes with English names, including `serum_creatinine`, `hemoglobin`, `albumin`, `hypertension`, and `anemia`. Categorical inputs use values such as `normal`, `abnormal`, `present`, `notpresent`, `yes`, `no`, `good`, and `poor`.
+API publik menggunakan 24 atribut CKD dengan penamaan bahasa Inggris, termasuk `serum_creatinine`, `hemoglobin`, `albumin`, `hypertension`, dan `anemia`. Masukan (*input*) kategorikal menggunakan nilai seperti `normal`, `abnormal`, `present`, `notpresent`, `yes`, `no`, `good`, dan `poor`.
 
-## Setup
+## Persiapan Instalasi (Setup)
 
 ```bash
 python -m venv .venv
-.venv\Scripts\activate
+.\.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## Run
+## Menjalankan Program (Run)
 
 ```bash
 python scripts/fetch_data.py
@@ -34,19 +34,19 @@ python -m src.train
 uvicorn app.main:app --reload --port 8000
 ```
 
-Open `http://127.0.0.1:8000` for the web UI.
+Buka `http://127.0.0.1:8000` di *browser* untuk melihat antarmuka web (UI).
 
-Open `Renal_Evidence_Studio.ipynb` for the notebook walkthrough.
+Buka `Renal_Evidence_Studio.ipynb` jika ingin melihat langkah-langkah dalam bentuk *notebook*.
 
 ## API
 
-Health:
+Cek Status Server (Health):
 
 ```bash
 curl http://127.0.0.1:8000/api/v1/health
 ```
 
-Screening request:
+Permintaan Skrining (Screening request):
 
 ```json
 {
@@ -77,7 +77,7 @@ Screening request:
 }
 ```
 
-Example response:
+Contoh Respons:
 
 ```json
 {
@@ -91,18 +91,18 @@ Example response:
 }
 ```
 
-Other endpoints:
+Titik Akhir (Endpoints) Lainnya:
 
 - `GET /api/v1/model-info`
 - `GET /api/v1/metrics`
 - `POST /api/v1/screen`
 
-## Tests
+## Pengujian (Tests)
 
 ```bash
 pytest -q
 ```
 
-## Safety Note
+## Catatan Keselamatan (Safety Note)
 
-This is an educational machine-learning screening demo for coursework and experimentation. It is not clinically validated and must not be used as a substitute for professional medical diagnosis, treatment, or triage.
+Ini adalah demo *machine-learning* edukasional yang digunakan untuk keperluan tugas dan eksperimen. Program ini tidak divalidasi secara klinis dan tidak boleh digunakan sebagai pengganti diagnosis, pengobatan, atau penanganan medis profesional.
