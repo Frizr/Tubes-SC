@@ -36,6 +36,8 @@ uvicorn app.main:app --reload --port 8000
 
 Open `http://127.0.0.1:8000` for the web UI.
 
+Open `Renal_Evidence_Studio.ipynb` for the notebook walkthrough.
+
 ## API
 
 Health:
