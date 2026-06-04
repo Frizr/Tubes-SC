@@ -1,28 +1,31 @@
-# Renal Evidence Studio
+# Sistem Prediksi Risiko Penyakit Ginjal Kronis
 
-**Topik: "Sistem Prediksi Risiko Penyakit Ginjal Kronis Menggunakan Perbandingan Algoritma Machine Learning Berbasis Web"**
+**Topik: Sistem Prediksi Risiko Penyakit Ginjal Kronis Menggunakan Perbandingan Algoritma Machine Learning Berbasis Web**
 
-Renal Evidence Studio adalah sebuah demo edukasi untuk skrining Penyakit Ginjal Kronis (*Chronic Kidney Disease* / CKD). Proyek ini melatih beberapa model pengklasifikasi *scikit-learn* menggunakan dataset UCI CKD, memilih model terbaik berdasarkan skor F1 yang divalidasi silang (*cross-validated*), menyimpan *pipeline* tunggal yang mencakup pra-pemrosesan dan model, serta menyajikan prediksi melalui API FastAPI dan antarmuka web statis.
-
-Proyek ini terinspirasi dari ruang lingkup masalah skrining CKD dan bukan salinan dari repositori lain. Proyek ini secara sengaja menggunakan kontrak API, penamaan *field* bahasa Inggris yang semantik, alur kerja perbandingan model, struktur tata letak artefak, dan antarmuka satu halaman (*one-page interface*) yang berbeda.
+Sistem ini adalah demo skrining edukatif berbasis machine learning untuk Penyakit Ginjal Kronis (*Chronic Kidney Disease* / CKD). Proyek ini melatih beberapa model pengklasifikasi *scikit-learn* menggunakan dataset UCI CKD, membandingkan algoritma seperti Logistic Regression, Decision Tree, Random Forest, dan SVC, lalu memilih model terbaik berdasarkan skor F1 yang divalidasi silang (*cross-validated*). Sistem menyimpan *pipeline* tunggal yang mencakup pra-pemrosesan dan inferensi model, serta menyajikan prediksi melalui API FastAPI dan antarmuka web statis.
 
 ## Arsitektur
 
-- `scripts/fetch_data.py` mengambil dataset UCI CKD id `336` melalui `ucimlrepo` dan menyimpannya ke `data/raw/ckd.csv`. Jika *library* atau jaringan tidak tersedia, skrip ini akan membuat dataset cadangan deterministik secara *offline* agar pengujian lokal tetap bisa berjalan.
-- `src/train.py` membandingkan beberapa *pipeline* model (*Logistic Regression*, *Decision Tree*, *Random Forest*, dan *SVC*) dengan validasi silang bertingkat (*stratified cross-validation*).
-- `app/artifacts/pipeline.joblib` menyimpan *scikit-learn* `Pipeline` yang terpilih.
-- `app/artifacts/metrics.json`, `model_card.json`, dan `feature_importance.json` menyimpan metrik evaluasi dan metadata penjelasan model.
-- `app/main.py` mengekspos *endpoint* FastAPI dan menyajikan tampilan web di folder `web/`.
+- `scripts/fetch_data.py` mengambil dataset UCI CKD dan menyimpannya ke `data/raw/ckd.csv`. **Dataset utama yang dipakai program adalah `data/raw/ckd.csv`**. File `.arff` dan `.info.txt` di folder `data/raw/` hanya digunakan sebagai referensi atau dataset mentah (*raw source*) tambahan.
+- `src/preprocess.py` mengatur logika utama pra-pemrosesan data untuk model.
+- `src/train.py` melatih dan membandingkan beberapa *pipeline* model (*Logistic Regression*, *Decision Tree*, *Random Forest*, dan *SVC*) dengan validasi silang bertingkat, lalu menyimpan model terbaik berdasarkan F1-score untuk kelas target `ckd`.
+- `app/artifacts/pipeline.joblib` menyimpan *scikit-learn* `Pipeline` tunggal yang terpilih (mencakup preprocessing dan model).
+- `app/artifacts/metrics.json`, `model_card.json`, dan `feature_importance.json` menyimpan metrik evaluasi (accuracy, precision, recall, F1-score, confusion matrix, ROC-AUC) dan metadata penjelasan model (berdasarkan *permutation feature importance*).
+- `app/main.py` mengekspos *endpoint* FastAPI (API utama) dan menyajikan tampilan antarmuka web (UI) di folder `web/`.
+- `app/schemas.py` mendefinisikan *schema* *input/output* publik dalam bahasa Inggris.
+- `app/services/predictor.py` menangani layanan prediksi untuk digunakan oleh API.
 
 ## Dataset
 
 Rubini, L., Soundarapandian, P., & Eswaran, P. (2015). Chronic Kidney Disease [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5G020
 
-API publik menggunakan 24 atribut CKD dengan penamaan bahasa Inggris, termasuk `serum_creatinine`, `hemoglobin`, `albumin`, `hypertension`, dan `anemia`. Masukan (*input*) kategorikal menggunakan nilai seperti `normal`, `abnormal`, `present`, `notpresent`, `yes`, `no`, `good`, dan `poor`.
+API publik menggunakan 24 atribut CKD dengan penamaan semantik bahasa Inggris, termasuk `serum_creatinine`, `hemoglobin`, `albumin`, `hypertension`, dan `anemia`. Masukan (*input*) kategorikal menggunakan nilai deskriptif seperti `normal`, `abnormal`, `present`, `notpresent`, `yes`, `no`, `good`, dan `poor`.
 
 ## Persiapan Instalasi (Setup)
 
-```bash
+Jalankan perintah di Windows PowerShell berikut:
+
+```powershell
 python -m venv .venv
 .\.venv\Scripts\activate
 pip install -r requirements.txt
@@ -30,22 +33,30 @@ pip install -r requirements.txt
 
 ## Menjalankan Program (Run)
 
-```bash
+Jalankan skrip berikut di Windows PowerShell:
+
+```powershell
 python scripts/fetch_data.py
 python -m src.train
 uvicorn app.main:app --reload --port 8000
 ```
 
-Buka `http://127.0.0.1:8000` di *browser* untuk melihat antarmuka web (UI).
+Setelah server berjalan, buka `http://127.0.0.1:8000` di *browser* untuk melihat antarmuka web.
 
-Buka `Renal_Evidence_Studio.ipynb` jika ingin melihat langkah-langkah dalam bentuk *notebook*.
+## Cara Menjalankan Notebook
+
+Untuk melihat langkah-langkah eksplorasi data, pelatihan, evaluasi, hingga feature importance, jalankan perintah berikut:
+
+```powershell
+jupyter notebook Sistem_Prediksi_Risiko_Penyakit_Ginjal_Kronis.ipynb
+```
 
 ## API
 
 Cek Status Server (Health):
 
-```bash
-curl http://127.0.0.1:8000/api/v1/health
+```powershell
+Invoke-RestMethod -Uri http://127.0.0.1:8000/api/v1/health
 ```
 
 Permintaan Skrining (Screening request):
@@ -93,18 +104,17 @@ Contoh Respons:
 }
 ```
 
-Titik Akhir (Endpoints) Lainnya:
-
+Endpoint Lainnya:
 - `GET /api/v1/model-info`
 - `GET /api/v1/metrics`
 - `POST /api/v1/screen`
 
 ## Pengujian (Tests)
 
-```bash
+```powershell
 pytest -q
 ```
 
 ## Catatan Keselamatan (Safety Note)
 
-Ini adalah demo *machine-learning* edukasional yang digunakan untuk keperluan tugas dan eksperimen. Program ini tidak divalidasi secara klinis dan tidak boleh digunakan sebagai pengganti diagnosis, pengobatan, atau penanganan medis profesional.
+Sistem ini dirancang semata-mata sebagai **screening edukatif berbasis machine learning** dan bukan merupakan alat diagnosis medis. Program ini tidak divalidasi secara klinis dan tidak boleh digunakan sebagai pengganti diagnosis, pengobatan, atau penanganan medis profesional.
