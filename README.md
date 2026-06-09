@@ -10,6 +10,57 @@ Penyakit Ginjal Kronis merupakan kondisi kesehatan serius yang sering berkaitan 
 
 Penelitian dalam repository ini berfokus pada perbandingan algoritma untuk memprediksi label risiko `ckd` dan `notckd`, kemudian mengintegrasikan model terbaik ke aplikasi web agar proses input dan interpretasi hasil dapat dicoba secara langsung.
 
+## Alasan Pemilihan Topik
+
+Topik prediksi risiko Penyakit Ginjal Kronis atau Chronic Kidney Disease (CKD) dipilih karena CKD merupakan salah satu masalah kesehatan serius yang dapat berkembang secara bertahap dan sering tidak disadari pada tahap awal. Kondisi ini membuat pendekatan screening berbasis data menjadi relevan untuk dikaji secara akademik, khususnya dalam konteks pemanfaatan machine learning untuk membantu mengenali pola risiko berdasarkan parameter klinis.
+
+Dari sudut pandang Sistem Cerdas, CKD dapat dimodelkan sebagai masalah klasifikasi karena data klinis pasien dapat dipetakan ke dalam label kelas tertentu, yaitu `ckd` dan `notckd`. Karakteristik ini sesuai dengan pendekatan supervised learning, di mana model dilatih menggunakan data berlabel untuk mempelajari pola yang membedakan kelas risiko CKD dan non-CKD.
+
+Dataset UCI Chronic Kidney Disease juga mendukung kebutuhan penelitian karena bersifat publik, memiliki 400 instance, memuat 24 fitur klinis, mengandung missing value, dan memiliki target class yang jelas. Karakteristik tersebut menjadikan dataset ini cocok untuk menerapkan tahapan preprocessing, training, evaluasi, dan perbandingan algoritma machine learning secara terstruktur.
+
+Project ini tidak hanya menggunakan satu model, tetapi membandingkan beberapa algoritma, yaitu Logistic Regression, Decision Tree, Random Forest, dan SVC. Perbandingan tersebut membuat hasil eksperimen lebih layak dianalisis secara akademik karena performa model dapat dibandingkan berdasarkan metrik yang sama, terutama mean cross-validated F1-score untuk label `ckd`.
+
+Selain itu, project ini memiliki potensi untuk dikembangkan sebagai bahan publikasi jurnal karena memiliki alur penelitian yang jelas, mulai dari pemilihan dataset, preprocessing, model comparison, evaluasi, interpretasi feature importance, hingga implementasi berbasis web. Alur tersebut menunjukkan penerapan konsep Sistem Cerdas secara utuh, dari eksperimen machine learning hingga penyajian hasil melalui aplikasi sederhana.
+
+Meskipun demikian, project ini tetap memiliki batasan etis. Sistem tidak digunakan sebagai alat diagnosis medis, melainkan sebagai screening edukatif dan eksperimen akademik berbasis machine learning. Hasil prediksi harus dipahami sebagai keluaran model berdasarkan data pembelajaran, bukan sebagai dasar pengambilan keputusan medis.
+
+## Deskripsi Topik
+
+Project ini merupakan sistem cerdas berbasis machine learning untuk melakukan screening risiko Penyakit Ginjal Kronis. Sistem memanfaatkan dataset CKD dari UCI Machine Learning Repository untuk melatih model klasifikasi yang membedakan data ke dalam kelas `ckd` dan `notckd`.
+
+Input sistem berupa parameter klinis seperti `age`, `blood_pressure`, `specific_gravity`, `albumin`, `sugar`, `blood_glucose_random`, `blood_urea`, `serum_creatinine`, `hemoglobin`, `hypertension`, `diabetes_mellitus`, `pedal_edema`, `anemia`, serta fitur lain yang tersedia pada dataset CKD. Fitur tersebut diproses melalui pipeline preprocessing agar data numerik, data kategorikal, dan missing value dapat ditangani secara konsisten.
+
+Output sistem berupa prediksi kelas `ckd` atau `notckd`, nilai probability atau confidence dari model, serta daftar fitur yang paling berpengaruh berdasarkan permutation feature importance. Informasi ini disajikan untuk membantu pengguna memahami hasil prediksi model secara lebih terstruktur.
+
+Sistem dikembangkan dalam bentuk web app agar model dapat diuji melalui antarmuka yang mudah digunakan. Implementasi menggunakan FastAPI sebagai API backend dan web interface statis sebagai media input serta tampilan hasil screening.
+
+Secara keseluruhan, sistem ini menunjukkan penerapan konsep Sistem Cerdas mulai dari data acquisition, preprocessing, supervised learning, model evaluation, model interpretation, hingga deployment sederhana berbasis API. Dengan demikian, project ini dapat digunakan sebagai dasar eksperimen akademik untuk memahami alur pengembangan model klasifikasi data kesehatan secara end-to-end.
+
+## Arah Pengembangan untuk Publikasi Jurnal
+
+- Penelitian dapat difokuskan pada perbandingan performa beberapa algoritma machine learning untuk klasifikasi CKD.
+- Kontribusi utama dapat berupa analisis performa model, pemilihan model terbaik berdasarkan F1-score, dan interpretasi feature importance.
+- Evaluasi dapat diperkuat dengan confusion matrix, precision, recall, F1-score, ROC-AUC, dan cross-validation.
+- Batasan penelitian perlu dijelaskan, seperti ukuran dataset yang relatif kecil, dataset bersifat sekunder, dan sistem belum divalidasi secara klinis.
+- Saran pengembangan meliputi penambahan dataset yang lebih besar, validasi dengan data lokal atau data rumah sakit, penambahan hyperparameter tuning, serta penggunaan metode explainability lanjutan seperti SHAP atau LIME.
+
+### Kontribusi Penelitian
+
+- Implementasi pipeline preprocessing dan klasifikasi CKD berbasis scikit-learn.
+- Perbandingan beberapa algoritma supervised learning.
+- Pemilihan model terbaik berdasarkan cross-validated F1-score.
+- Penyajian hasil evaluasi model secara terstruktur.
+- Penambahan interpretasi fitur menggunakan permutation feature importance.
+- Implementasi model ke dalam aplikasi web berbasis FastAPI.
+
+### Batasan Penelitian
+
+- Dataset yang digunakan adalah dataset publik dari UCI, bukan data primer dari rumah sakit lokal.
+- Jumlah data terbatas, yaitu 400 instance.
+- Sistem hanya bersifat edukatif dan belum melalui validasi klinis.
+- Hasil prediksi tidak boleh dijadikan dasar diagnosis atau pengambilan keputusan medis.
+- Model bergantung pada kualitas data input dan distribusi dataset training.
+
 ## Rumusan Masalah
 
 1. Bagaimana melakukan preprocessing dataset CKD yang memiliki fitur numerik, fitur kategorikal, dan nilai hilang?
@@ -244,3 +295,8 @@ pytest -q
 - Model belum melalui validasi klinis.
 - Hasil prediksi harus dipahami sebagai perilaku model pada data, bukan keputusan medis.
 - Keputusan kesehatan tetap memerlukan pemeriksaan dan penilaian tenaga medis profesional.
+
+## Referensi
+
+- Rubini, L., Soundarapandian, P., & Eswaran, P. (2015). Chronic Kidney Disease [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5G020
+- Centers for Disease Control and Prevention. Chronic Kidney Disease in the United States. Atlanta, GA: U.S. Department of Health and Human Services, Centers for Disease Control and Prevention; 2026.
