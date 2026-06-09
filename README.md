@@ -155,11 +155,13 @@ Nilai ini adalah hasil eksperimen pada dataset kecil dan tidak boleh ditafsirkan
 |   |-- raw/ckd.csv             # Dataset utama hasil cache/fetch
 |   `-- metadata/               # Metadata dataset
 |-- scripts/fetch_data.py       # Pengambilan dan normalisasi dataset UCI CKD
+|-- scripts/generate_figures.py # Generator visualisasi untuk laporan/presentasi
 |-- src/
 |   |-- preprocess.py           # Definisi fitur dan preprocessing pipeline
 |   |-- train.py                # Training, model comparison, dan artifact writer
 |   |-- evaluate.py             # Metrik evaluasi
 |   `-- explain.py              # Permutation feature importance
+|-- reports/figures/            # Output gambar visualisasi
 |-- tests/                      # Test training dan API
 |-- web/                        # Frontend statis
 |-- Sistem_Prediksi_Risiko_Penyakit_Ginjal_Kronis.ipynb
@@ -207,9 +209,59 @@ Isi notebook mengikuti alur:
 5. Perbandingan algoritma.
 6. Evaluasi model terbaik.
 7. Feature importance.
-8. Simulasi prediksi.
-9. Integrasi web dan API.
-10. Kesimpulan dan batasan.
+8. Visualisasi dataset, performa model, confusion matrix, dan feature importance.
+9. Diagram alur training dan arsitektur sistem.
+10. Simulasi prediksi.
+11. Integrasi web dan API.
+12. Kesimpulan dan batasan.
+
+## Visualisasi dan Analisis
+
+Project ini menyediakan visualisasi yang dapat digunakan untuk presentasi akademik, laporan, atau draft publikasi. Visualisasi tersedia di notebook utama dan dapat diekspor sebagai file gambar PNG.
+
+Visualisasi yang disediakan:
+
+- Distribusi kelas target `ckd` dan `notckd`.
+- Histogram fitur numerik penting seperti `age`, `blood_pressure`, `blood_glucose_random`, `blood_urea`, `serum_creatinine`, dan `hemoglobin`.
+- Jumlah missing value per fitur, diurutkan dari yang terbanyak.
+- Perbandingan mean cross-validated F1-score untuk Logistic Regression, Decision Tree, Random Forest, dan SVC.
+- Metrik evaluasi model terbaik: accuracy, precision, recall, F1-score, dan ROC-AUC.
+- Confusion matrix model terbaik.
+- Top 10 feature importance berdasarkan permutation feature importance.
+- Diagram alur training model.
+- Diagram arsitektur sistem dari Web UI sampai output prediksi.
+
+## Cara Menghasilkan Visualisasi
+
+Jalankan dari root repository:
+
+```powershell
+python scripts/fetch_data.py
+python -m src.train
+python scripts/generate_figures.py
+```
+
+Output gambar disimpan ke:
+
+```text
+reports/figures/
+```
+
+File utama yang dihasilkan:
+
+- `class_distribution.png`
+- `missing_values.png`
+- `model_comparison_f1.png`
+- `best_model_metrics.png`
+- `confusion_matrix.png`
+- `feature_importance_top10.png`
+- `numeric_feature_histograms.png`
+- `histogram_age.png`
+- `histogram_blood_pressure.png`
+- `histogram_blood_glucose_random.png`
+- `histogram_blood_urea.png`
+- `histogram_serum_creatinine.png`
+- `histogram_hemoglobin.png`
 
 ## Menjalankan Web App
 
